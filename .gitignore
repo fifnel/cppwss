@@ -1,4 +1,5 @@
 src/cppwss
+test/cppwss_test
 *.o
 /*.tar.gz
 
@@ -8,16 +9,17 @@ src/cppwss
 Makefile
 Makefile.in
 
+build-aux/config.h*
+build-aux/depcomp
+build-aux/install-sh
+build-aux/missing
+build-aux/stamp-h1
+
 /aclocal.m4
 /autom4te.cache/
 /autoscan.log
 /configure.scan
 /configure
-/config.h*
 /config.log
 /config.status
-/depcomp
-/install-sh
-/missing
-/stamp-h1
 

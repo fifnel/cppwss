@@ -1,5 +1,5 @@
 #include <iostream>
-#include "helloworld.h"
+#include "../src/helloworld.h"
 
 using namespace std;
 
@@ -9,5 +9,7 @@ int main(int argc, char *argv[]) {
     
     hello.print();
 
-    return EXIT_SUCCESS;
+    //return EXIT_SUCCESS;
+    return EXIT_FAILURE;
 }
+

@@ -1,13 +1,12 @@
 #include <iostream>
-#include "helloworld.h"
+
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    CHelloWorld hello(3);
-    
-    hello.print();
+    cout << "Hello,World!" << endl;
 
     return EXIT_SUCCESS;
 }
+
