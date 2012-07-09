@@ -1,13 +1,23 @@
+//
+//  main.cpp
+//  CppWebSocket
+//
+//  Created by fifnel on 2012/04/18.
+//  Copyright (c) 2012年 fifnel. All rights reserved.
+//
 #include <iostream>
-#include "helloworld.h"
+#include "Server.h"
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
-
-    CHelloWorld hello(3);
+int main(int argc, const char * argv[])
+{
+    // insert code here...
+    std::cout << "Hello, World!\n";
     
-    hello.print();
-
-    return EXIT_SUCCESS;
+    WebSocket::Server server("localhost", "9000");
+    server.run();
+    
+    return 0;
 }
+

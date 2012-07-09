@@ -1,5 +1,8 @@
 bin_PROGRAMS = cppwss
+cppwss_LDFLAGS = -lboost_system-mt
 cppwss_SOURCES = \
 				 main.cpp \
-				 helloworld.cpp
-
+				 helloworld.cpp \
+				 server.cpp \
+				 connection_manager.cpp \
+				 connection.cpp
