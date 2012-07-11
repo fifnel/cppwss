@@ -1,22 +1,15 @@
 //
-//  Connection.cpp
-//  CppWebSocket
-//
-//  Created by fifnel on 2012/04/18.
-//  Copyright (c) 2012年 fifnel. All rights reserved.
+// Connection
+// Copyright (c) 2012 fifnel. All rights reserved.
 //
 
 #include "connection.h"
 
-#include <boost/bind.hpp>
-
 #include "connection_manager.h"
 
-// TODO: request_handerってなんだろう
-// TODO: WebSocketのハンドシェイクを書く
-// TODO: 受信後のプロトコルのパース処理を書く
+#include <boost/bind.hpp>
 
-namespace WebSocket {
+namespace wss {
 
     // コンストラクタ
     Connection::Connection(asio::io_service& io_service, ConnectionManager& connection_manager)
@@ -34,10 +27,10 @@ namespace WebSocket {
     void Connection::start()
     {
         socket_.async_read_some( asio::buffer(buffer_),
-                                 boost::bind(&Connection::handle_read,
-                                             shared_from_this(),
-                                             asio::placeholders::error,
-                                             asio::placeholders::bytes_transferred) );
+                boost::bind(&Connection::handle_read,
+                    shared_from_this(),
+                    asio::placeholders::error,
+                    asio::placeholders::bytes_transferred) );
     }
 
     // 停止
@@ -58,21 +51,21 @@ namespace WebSocket {
         // TODO:未実装
         string buf(buffer_.c_array(), bytes_transferred);
         cout << "[" << buf << "]" << endl;
-        
+
         socket_.async_write_some(asio::buffer("hoge"),
-                                 boost::bind(&Connection::handle_write,
-                                             shared_from_this(),
-                                             asio::placeholders::error,
-                                             asio::placeholders::bytes_transferred));
-        
+                boost::bind(&Connection::handle_write,
+                    shared_from_this(),
+                    asio::placeholders::error,
+                    asio::placeholders::bytes_transferred));
+
         socket_.async_read_some( asio::buffer(buffer_),
-                                boost::bind(&Connection::handle_read,
-                                            shared_from_this(),
-                                            asio::placeholders::error,
-                                            asio::placeholders::bytes_transferred) );
+                boost::bind(&Connection::handle_read,
+                    shared_from_this(),
+                    asio::placeholders::error,
+                    asio::placeholders::bytes_transferred) );
 
         // エラー発生時はコレを呼ぶ
-//        connection_manager_.stop(shared_from_this());
+        //        connection_manager_.stop(shared_from_this());
     }
 
     // writeハンドラ
@@ -82,7 +75,8 @@ namespace WebSocket {
         // TODO:未実装
 
         // エラー発生時はコレを呼ぶ
-//        connection_manager_.stop(shared_from_this());
+        //        connection_manager_.stop(shared_from_this());
     }
 
-} // namespace WebSocket
+} // namespace wss
+

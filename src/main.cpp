@@ -15,7 +15,7 @@ int main(int argc, const char * argv[])
     // insert code here...
     std::cout << "Hello, World!\n";
     
-    WebSocket::Server server("localhost", "9000");
+    wss::Server server("localhost", "9000");
     server.run();
     
     return 0;

@@ -1,27 +1,24 @@
 //
-//  ConnectionManager.h
-//  CppWebSocket
-//
-//  Created by fifnel on 2012/04/19.
-//  Copyright (c) 2012年 fifnel. All rights reserved.
+// Connection Manager
+// Copyright (c) 2012 fifnel. All rights reserved.
 //
 
-#ifndef __ConnectionManager_H_
-#define __ConnectionManager_H_
+#ifndef __CPPWSS_CONNECTION_MANAGER_H__
+#define __CPPWSS_CONNECTION_MANAGER_H__
+
+#include "connection.h"
 
 #include <set>
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 
-#include "connection.h"
-
 using namespace std;
 namespace asio = boost::asio;
 
-namespace WebSocket
-{
+namespace wss {
+
     class Connection;
-    
+
     class ConnectionManager
         : public boost::noncopyable
     {
@@ -45,6 +42,7 @@ namespace WebSocket
         set<ConnectionPtr> connections_;
     };
 
-} // namespace WebSocket
+} // namespace wss
 
-#endif //__ConnectionManager_H_
+#endif
+

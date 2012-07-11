@@ -1,13 +1,10 @@
 //
-//  WebSocketServer.h
-//  CppWebSocket
-//
-//  Created by fifnel on 2012/04/18.
-//  Copyright (c) 2012年 fifnel. All rights reserved.
+// TCP Server
+// Copyright (c) 2012 fifnel. All rights reserved.
 //
 
-#ifndef CppWebSocket_WebSocketServer_h
-#define CppWebSocket_WebSocketServer_h
+#ifndef __CPPWSS_SERVER_H__
+#define __CPPWSS_SERVER_H__
 
 #include <boost/asio.hpp>
 #include <boost/noncopyable.hpp>
@@ -18,50 +15,45 @@
 using namespace std;
 namespace asio = boost::asio;
 
-namespace WebSocket {
+namespace wss {
 
-    /**
-     WebSocketサーバー
-     */
-    class Server
-        : private boost::noncopyable
+    class Server : private boost::noncopyable
     {
     public:
-        
+
         // コンストラクタ
         explicit Server(const string &address, const string &port);
-        
-        
+
         // デストラクタ
         virtual ~Server();
-        
-        // 開始
+
+        // サーバー処理開始
         void run();
-        
+
     private:
-        
+
         // accept開始
         void start_accept();
-        
-        // acceptハンドラ
+
+        // accept時に呼ばれる
         void handle_accept(const boost::system::error_code& error);
-        
-        // stopハンドラ
+
+        // 停止時に呼ばれる
         void handle_stop(const boost::system::error_code &error, int signal_number);
-        
-        
+
+
     private:
         std::string address_;
         std::string port_;
-        
-        asio::io_service io_service_;
-        asio::signal_set signals_;
-        asio::ip::tcp::acceptor accepter_;
+
+        asio::io_service          io_service_;
+        asio::signal_set          signals_;
+        asio::ip::tcp::acceptor   accepter_;
+
         ConnectionPtr new_connection_;
         ConnectionManager connection_manager_;
     };
-    
-} // namespace WebSocket
 
+} // namespace wss
 
 #endif
