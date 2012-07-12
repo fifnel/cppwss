@@ -5,4 +5,6 @@ cppwss_SOURCES = \
 				 helloworld.cpp \
 				 server.cpp \
 				 connection_manager.cpp \
-				 connection.cpp
+				 connection.cpp \
+				 packet_parser.cpp \
+				 dummy_packet_parser.cpp

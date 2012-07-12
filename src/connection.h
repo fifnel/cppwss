@@ -9,6 +9,7 @@
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/asio.hpp>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 namespace asio = boost::asio;
@@ -16,6 +17,8 @@ namespace asio = boost::asio;
 namespace wss {
 
     class ConnectionManager;
+    class PacketParser;
+    typedef boost::shared_ptr<PacketParser> PacketParserPtr;
 
     class Connection
         : public  boost::enable_shared_from_this<Connection>
@@ -53,6 +56,9 @@ namespace wss {
 
         // 受信バッファ
         boost::array<char, 8192> buffer_;
+
+        // 受信バッファのパーサ
+        PacketParserPtr packet_parser_;
     };
 
     typedef boost::shared_ptr<Connection> ConnectionPtr;
