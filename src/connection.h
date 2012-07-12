@@ -41,6 +41,9 @@ namespace wss {
         // ソケットの取得
         asio::ip::tcp::socket& socket();
 
+        // パケットの書き込み
+        void write(const char *buffer, size_t size);
+
     private:
         // 読み込み時に呼ばれる
         void handle_read(const boost::system::error_code& error, std::size_t bytes_transferred);

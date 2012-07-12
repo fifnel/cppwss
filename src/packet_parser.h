@@ -17,7 +17,7 @@ namespace wss {
     {
     public:
         // コンストラクタ
-        explicit PacketParser(ConnectionPtr connection,
+        explicit PacketParser(Connection& connection,
                               size_t buffer_capacity = 8192);
 
         // デストラクタ
@@ -31,7 +31,7 @@ namespace wss {
 
     protected:
         vector<char> buffer_;
-        ConnectionPtr connection_;
+        Connection& connection_;
     };
 
 } // namespace wss

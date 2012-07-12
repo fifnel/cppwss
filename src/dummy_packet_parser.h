@@ -20,7 +20,7 @@ namespace wss {
     {
     public:
         // コンストラクタ
-        explicit DummyPacketParser(ConnectionPtr connection,
+        explicit DummyPacketParser(Connection& connection,
                                    size_t buffer_capacity = 8192);
 
         // デストラクタ

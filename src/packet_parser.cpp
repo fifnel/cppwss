@@ -8,7 +8,7 @@
 namespace wss {
 
     // コンストラクタ
-    PacketParser::PacketParser(ConnectionPtr connection,
+    PacketParser::PacketParser(Connection& connection,
                                size_t buffer_capacity)
         : connection_(connection)
         , buffer_(buffer_capacity)

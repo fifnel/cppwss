@@ -10,7 +10,7 @@ using namespace std;
 namespace wss {
 
     // コンストラクタ
-    DummyPacketParser::DummyPacketParser(ConnectionPtr connection,
+    DummyPacketParser::DummyPacketParser(Connection& connection,
                                size_t buffer_capacity)
         : PacketParser(connection, buffer_capacity)
     {
@@ -25,6 +25,8 @@ namespace wss {
     void DummyPacketParser::parse()
     {
         // dummy
+        const char *hoge = "hoge";
+        connection_.write(hoge, 4);
     }
 
 } // namespace wss

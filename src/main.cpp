@@ -7,17 +7,15 @@
 //
 #include <iostream>
 #include "Server.h"
+#include <vector>
 
 using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    
     wss::Server server("localhost", "9000");
     server.run();
-    
+
     return 0;
 }
 

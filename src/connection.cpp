@@ -18,7 +18,7 @@ namespace wss {
         : connection_manager_(connection_manager)
         , socket_(io_service)
     {
-        packet_parser_ = PacketParserPtr(new DummyPacketParser(shared_from_this()));
+        packet_parser_ = PacketParserPtr(new DummyPacketParser(*this));
     }
 
     // デストラクタ
@@ -48,41 +48,49 @@ namespace wss {
         return socket_;
     }
 
-    // readハンドラ
+    // パケットの書き込み
+    void Connection::write(const char *buffer, size_t size)
+    {
+        socket_.async_write_some(asio::buffer(buffer, size),
+                boost::bind(&Connection::handle_write,
+                    shared_from_this(),
+                    asio::placeholders::error,
+                    asio::placeholders::bytes_transferred));
+    }
+
+    // 読み込み時に呼ばれる
     void Connection::handle_read(const boost::system::error_code& error, std::size_t bytes_transferred)
     {
+        if (error)  {
+            connection_manager_.stop(shared_from_this());
+            return;
+        }
+
         // test
         string buf(buffer_.c_array(), bytes_transferred);
-        cout << "[" << buf << "]" << endl;
+        cout << "[" << buf << "]" << error << endl;
 
         if (bytes_transferred > 0) {
             packet_parser_->appendPacket(buffer_.c_array(), bytes_transferred);
             packet_parser_->parse();
         }
 
-        /*
-        socket_.async_write_some(asio::buffer("hoge"),
-                boost::bind(&Connection::handle_write,
-                    shared_from_this(),
-                    asio::placeholders::error,
-                    asio::placeholders::bytes_transferred));
-                    */
-
+        // 次の読み込み
         socket_.async_read_some( asio::buffer(buffer_),
                 boost::bind(&Connection::handle_read,
                     shared_from_this(),
                     asio::placeholders::error,
                     asio::placeholders::bytes_transferred) );
 
-        // エラー発生時はコレを呼ぶ
-        //        connection_manager_.stop(shared_from_this());
     }
 
-    // writeハンドラ
+    // 書き込み時に呼ばれる
     void Connection::handle_write(const boost::system::error_code& error, std::size_t bytes_transferred)
     {
-        // エラー発生時はコレを呼ぶ
-        //        connection_manager_.stop(shared_from_this());
+        if (error)  {
+            connection_manager_.stop(shared_from_this());
+            return;
+        }
     }
 
 } // namespace wss
