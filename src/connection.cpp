@@ -66,10 +66,6 @@ namespace wss {
             return;
         }
 
-        // test
-        string buf(buffer_.c_array(), bytes_transferred);
-        cout << "[" << buf << "]" << error << endl;
-
         if (bytes_transferred > 0) {
             packet_parser_->appendPacket(buffer_.c_array(), bytes_transferred);
             packet_parser_->parse();
