@@ -28,6 +28,9 @@ namespace wss {
 
         // パケットのパース処理
         virtual void parse();
+
+    private:
+        string packet_string;
     };
 
 } // namespace wss

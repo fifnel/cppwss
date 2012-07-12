@@ -27,6 +27,11 @@ namespace wss {
         // dummy
         const char *hoge = "hoge";
         connection_.write(hoge, 4);
+
+        packet_string.append(buffer_.begin(), buffer_.end());
+        vector<char>().swap(buffer_);
+
+        cout << packet_string << endl;
     }
 
 } // namespace wss
