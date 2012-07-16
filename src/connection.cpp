@@ -58,6 +58,20 @@ namespace wss {
                     asio::placeholders::bytes_transferred));
     }
 
+    // パケットパーサーの切り替え
+    void Connection::switch_packet_parser(const boost::shared_ptr<PacketParser> &packet_parser)
+    {
+        if (packet_parser == packet_parser_) {
+            next_packet_parser_.reset();
+            return;
+        }
+        if (packet_parser == packet_parser_) {
+            return;
+        }
+
+        next_packet_parser_ = packet_parser;
+    }
+
     // 読み込み時に呼ばれる
     void Connection::handle_read(const boost::system::error_code& error, std::size_t bytes_transferred)
     {
@@ -69,6 +83,11 @@ namespace wss {
         if (bytes_transferred > 0) {
             packet_parser_->appendPacket(buffer_.c_array(), bytes_transferred);
             packet_parser_->parse();
+        }
+
+        if (next_packet_parser_.get()) {
+            packet_parser_ = next_packet_parser_;
+            next_packet_parser_.reset();
         }
 
         // 次の読み込み

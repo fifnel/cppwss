@@ -15,6 +15,13 @@ namespace wss {
     {
     }
 
+    // コンストラクタ
+    PacketParser::PacketParser(PacketParser *copy_source)
+        : connection_(copy_source->connection_)
+    {
+        buffer_.assign(copy_source->buffer_.begin(), copy_source->buffer_.end());
+    }
+
     // デストラクタ
     PacketParser::~PacketParser()
     {

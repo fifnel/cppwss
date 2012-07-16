@@ -44,6 +44,9 @@ namespace wss {
         // パケットの書き込み
         void write(const char *buffer, size_t size);
 
+        // パケットパーサーの切り替え
+        void switch_packet_parser(const boost::shared_ptr<PacketParser> &packet_parser);
+
     private:
         // 読み込み時に呼ばれる
         void handle_read(const boost::system::error_code& error, std::size_t bytes_transferred);
@@ -62,6 +65,9 @@ namespace wss {
 
         // 受信バッファのパーサ
         PacketParserPtr packet_parser_;
+
+        // 切り替え待機中の受信バッファのパーサ
+        PacketParserPtr next_packet_parser_;
     };
 
     typedef boost::shared_ptr<Connection> ConnectionPtr;

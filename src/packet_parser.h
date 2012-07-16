@@ -19,6 +19,8 @@ namespace wss {
         // コンストラクタ
         explicit PacketParser(Connection& connection,
                               size_t buffer_capacity = 8192);
+        // コンストラクタ
+        explicit PacketParser(PacketParser *copy_source);
 
         // デストラクタ
         virtual ~PacketParser();
