@@ -33,7 +33,7 @@ namespace wss {
         virtual void parse();
 
     private:
-        string packet_string;
+        string packet_string_;
     };
 
 } // namespace wss
