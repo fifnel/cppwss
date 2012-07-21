@@ -9,11 +9,7 @@ test/cppwss_test
 Makefile
 Makefile.in
 
-build-aux/config.h*
-build-aux/depcomp
-build-aux/install-sh
-build-aux/missing
-build-aux/stamp-h1
+build-aux
 
 /aclocal.m4
 /autom4te.cache/
@@ -22,4 +18,5 @@ build-aux/stamp-h1
 /configure
 /config.log
 /config.status
+/libtool
 

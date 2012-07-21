@@ -10,6 +10,7 @@ AC_CONFIG_HEADERS([build-aux/config.h])
 
 # Checks for programs.
 AC_PROG_CXX
+AC_COMPILE_STDCXX_0X
 
 # Checks for libraries.
 
@@ -18,6 +19,7 @@ AC_PROG_CXX
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
+
 
 AC_CONFIG_FILES([src/Makefile test/Makefile Makefile])
 AC_OUTPUT
