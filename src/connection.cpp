@@ -88,6 +88,8 @@ namespace wss {
         if (next_packet_parser_.get()) {
             packet_parser_ = next_packet_parser_;
             next_packet_parser_.reset();
+
+            packet_parser_->parse(); // ここで一度呼ばないと次に何かパケットが送られてくるまで呼ばれないので
         }
 
         // 次の読み込み
