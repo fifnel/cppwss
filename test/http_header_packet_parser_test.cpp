@@ -40,7 +40,7 @@ namespace wss {
         ConnectionManager dummy_connection_manager;
         Connection dummy_connection(dummy_io_service, dummy_connection_manager);
 
-        HttpHeaderPacketParser parser(dummy_connection, 200);
+        HttpHeaderPacketParser parser(dummy_connection);
 
         parser.appendPacket(http_request.c_str(), http_request.length());
         BOOST_CHECK_EQUAL(http_request.length(), parser.buffer_.size());
