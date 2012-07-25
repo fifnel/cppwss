@@ -22,7 +22,7 @@ namespace wss {
     }
 
     // コンストラクタ
-    HttpHeaderPacketParser::HttpHeaderPacketParser(PacketParser *copy_source)
+    HttpHeaderPacketParser::HttpHeaderPacketParser(const PacketParser *copy_source)
         : PacketParser(copy_source)
     {
     }
@@ -39,13 +39,12 @@ namespace wss {
         packet_string_.append(buffer_.begin(), buffer_.end());
         vector<char>().swap(buffer_);
 
+#if 0
         { // debug log
             cout << packet_string_ << endl;
             cout << "-----------" << endl;
         }
-
-        typedef map<string,string> string_pair_map;
-        string_pair_map http_req_header;
+#endif
 
         vector<string> packet_lines;
         boost::split(packet_lines, packet_string_, boost::is_any_of("\r\n"));
@@ -54,22 +53,22 @@ namespace wss {
             boost::smatch m;
             static const boost::regex e("^(.+?)\\s*\\:\\s*(.+)$");
             if (regex_search(line, m, e)) {
+#if 0
                 { // debug log
                     for (int i=0; i<m.size(); i++ ) {
                         cout << i << ":" << m[i] << endl;
                     }
                 }
+#endif
                 if (m.size() == 3) {
-                    http_req_header.insert(string_pair_map::value_type(m[1], m[2]));
+                    http_request_header_.insert(map<string,string>::value_type(m[1], m[2]));
                 }
             }
+#if 0
             { // debug log
                 cout << "-----------" << endl;
             }
-        }
-
-        { // debug log
-            cout << "key:" << http_req_header["Sec-WebSocket-Key"] << endl;
+#endif
         }
     }
 

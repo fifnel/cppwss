@@ -11,12 +11,12 @@ namespace wss {
     PacketParser::PacketParser(Connection& connection,
                                size_t buffer_capacity)
         : connection_(connection)
-        , buffer_(buffer_capacity)
     {
+        buffer_.reserve(buffer_capacity);
     }
 
     // コンストラクタ
-    PacketParser::PacketParser(PacketParser *copy_source)
+    PacketParser::PacketParser(const PacketParser *copy_source)
         : connection_(copy_source->connection_)
     {
         buffer_.assign(copy_source->buffer_.begin(), copy_source->buffer_.end());
@@ -28,7 +28,7 @@ namespace wss {
     }
 
     // パケットの追加
-    void PacketParser::appendPacket(char *buffer, size_t size)
+    void PacketParser::appendPacket(const char *buffer, size_t size)
     {
         buffer_.insert(buffer_.end(), buffer, buffer+size);
     }

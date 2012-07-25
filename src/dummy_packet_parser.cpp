@@ -19,7 +19,7 @@ namespace wss {
     }
 
     // コンストラクタ
-    DummyPacketParser::DummyPacketParser(PacketParser *copy_source)
+    DummyPacketParser::DummyPacketParser(const PacketParser *copy_source)
         : PacketParser(copy_source)
     {
     }

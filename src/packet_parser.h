@@ -20,13 +20,13 @@ namespace wss {
         explicit PacketParser(Connection& connection,
                               size_t buffer_capacity = 8192);
         // コンストラクタ
-        explicit PacketParser(PacketParser *copy_source);
+        explicit PacketParser(const PacketParser *copy_source);
 
         // デストラクタ
         virtual ~PacketParser();
 
         // パケットの追加
-        void appendPacket(char *buffer, size_t size);
+        void appendPacket(const char *buffer, size_t size);
 
         // パケットのパース処理
         virtual void parse() = 0;

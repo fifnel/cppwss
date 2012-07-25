@@ -24,7 +24,7 @@ namespace wss {
                                    size_t buffer_capacity = 8192);
 
         // コンストラクタ
-        explicit DummyPacketParser(PacketParser *copy_source);
+        explicit DummyPacketParser(const PacketParser *copy_source);
 
         // デストラクタ
         virtual ~DummyPacketParser();

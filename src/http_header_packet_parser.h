@@ -22,7 +22,7 @@ namespace wss {
                 size_t buffer_capacity = 8192);
 
         // コンストラクタ
-        explicit HttpHeaderPacketParser(PacketParser *copy_source);
+        explicit HttpHeaderPacketParser(const PacketParser *copy_source);
 
         // デストラクタ
         virtual ~HttpHeaderPacketParser();
@@ -33,6 +33,7 @@ namespace wss {
     private:
         string packet_string_;
 
+        map<string,string> http_request_header_;
 
 #ifdef ENABLE_UNIT_TEST
     public:
