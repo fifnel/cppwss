@@ -8,6 +8,7 @@
 
 #include "connection.h"
 #include "packet_parser.h"
+#include <cryptopp/sha.h>
 
 using namespace std;
 
@@ -31,6 +32,16 @@ namespace wss {
         virtual void parse();
 
     private:
+
+        // websocketプロトコルへのアップグレード処理
+        void upgrade();
+
+        // バイナリ配列をBase64エンコードした文字列に変換する
+        string toBase64(const vector<byte>& source);
+
+        // 文字列をSHA1変換する
+        vector<byte> toSHA1(const string& source);
+
         string packet_string_;
 
         map<string,string> http_request_header_;
