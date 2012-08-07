@@ -35,6 +35,7 @@ namespace wss {
         vector<char>().swap(buffer_);
 
         cout << "websokcetparser" << endl;
+        cout << packet_string_ << endl;
     }
 
 } // namespace wss

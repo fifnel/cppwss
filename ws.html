@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            websocket test
+        </title>
+        <script type="text/javascript">
+            var ws;
+            if ("WebSocket" in window) {
+                ws = new WebSocket("ws://localhost:9000/wstest");
+            } else if ("MozWebSocket" in window) {
+                ws = new MozWebSocket("ws://localhost:9000/wstest");
+            }
+            ws.onmessage = function(event) {
+                log(event.data);
+            }
+            ws.onopen = function(event) {
+                log("connected");
+            }
+            ws.onclose = function(event) {
+                log("closed");
+            }
+            function send() {
+                ws.send("hoge");
+                log("send");
+            }
+            function disconnect() {
+                ws.close();
+                log("disconnect");
+            }
+            function log(str) {
+                document.getElementById("log").innerHTML += str + "<br />";
+            }
+        </script>
+    </head>
+    <body>
+        <p>てすと！</p>
+        <input type="BUTTON" value="send" onClick="send()" />
+        <input type="BUTTON" value="disconnect" onclick="disconnect()" />
+        <hr />
+        <div id="log"></div>
+    </body>
+</html>
+
