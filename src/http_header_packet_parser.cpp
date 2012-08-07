@@ -5,6 +5,8 @@
 
 #include "http_header_packet_parser.h"
 
+#include "web_socket_parser.h"
+
 #include <map>
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
@@ -86,6 +88,8 @@ namespace wss {
         http_response_header += "\r\n\r\n";
 
         connection_.write(http_response_header.c_str(), http_response_header.length());
+
+        connection_.switch_packet_parser(boost::shared_ptr<PacketParser>(new WebSocketParser(this)));
 
         cout << http_response_header << endl;
     }

@@ -7,7 +7,7 @@
 
 #include "connection_manager.h"
 #include "packet_parser.h"
-#include "dummy_packet_parser.h"
+#include "http_header_packet_parser.h"
 
 #include <boost/bind.hpp>
 
@@ -18,7 +18,7 @@ namespace wss {
         : connection_manager_(connection_manager)
         , socket_(io_service)
     {
-        packet_parser_ = PacketParserPtr(new DummyPacketParser(*this));
+        packet_parser_ = PacketParserPtr(new HttpHeaderPacketParser(*this));
     }
 
     // デストラクタ
