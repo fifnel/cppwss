@@ -40,6 +40,11 @@ namespace wss {
 
     private:
         set<ConnectionPtr> connections_;
+
+#ifdef ENABLE_UNIT_TEST
+    public:
+        static void unit_test();
+#endif
     };
 
 } // namespace wss

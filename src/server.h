@@ -52,6 +52,11 @@ namespace wss {
 
         ConnectionPtr new_connection_;
         ConnectionManager connection_manager_;
+
+#ifdef ENABLE_UNIT_TEST
+    public:
+        static void unit_test();
+#endif
     };
 
 } // namespace wss

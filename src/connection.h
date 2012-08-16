@@ -68,6 +68,11 @@ namespace wss {
 
         // 切り替え待機中の受信バッファのパーサ
         PacketParserPtr next_packet_parser_;
+
+#ifdef ENABLE_UNIT_TEST
+    public:
+        static void unit_test();
+#endif
     };
 
     typedef boost::shared_ptr<Connection> ConnectionPtr;

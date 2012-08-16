@@ -34,6 +34,11 @@ namespace wss {
 
     private:
         string packet_string_;
+
+#ifdef ENABLE_UNIT_TEST
+    public:
+        static void unit_test();
+#endif
     };
 
 } // namespace wss

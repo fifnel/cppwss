@@ -31,10 +31,14 @@ namespace wss {
         const vector<char> &getPayload();
 
     protected:
-
         bool fin_;
         char opcode_;
         vector<char> payload_data_;
+
+#ifdef ENABLE_UNIT_TEST
+    public:
+        static void unit_test();
+#endif
     };
 
 } // namespace wss
