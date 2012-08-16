@@ -5,7 +5,7 @@
 
 #include "http_header_packet_parser.h"
 
-#include "web_socket_parser.h"
+#include "websocket_parser.h"
 
 #include <map>
 #include <algorithm>

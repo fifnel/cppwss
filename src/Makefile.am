@@ -8,6 +8,6 @@ cppwss_SOURCES = \
 				 connection.cpp \
 				 packet_parser.cpp \
 				 http_header_packet_parser.cpp \
-				 web_socket_parser.cpp \
+				 websocket_parser.cpp \
 				 websocket_frame.cpp \
 				 dummy_packet_parser.cpp

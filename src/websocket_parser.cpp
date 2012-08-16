@@ -3,7 +3,7 @@
 // Copyright (c) 2012 fifnel. All rights reserved.
 //
 
-#include "web_socket_parser.h"
+#include "websocket_parser.h"
 
 #include "websocket_frame.h"
 
