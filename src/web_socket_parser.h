@@ -31,10 +31,11 @@ namespace wss {
         virtual void parse();
 
     private:
+        // WebSocket Frameのパース
+        bool parse_websocket_frame(const vector<char>& payload_data_);
 
-        string packet_string_;
-
-        map<string,string> http_request_header_;
+        unsigned char opcode_;
+        vector<char> payload_data_;
 
 #ifdef ENABLE_UNIT_TEST
     public:

@@ -5,6 +5,10 @@
 
 #include "web_socket_parser.h"
 
+#include "websocket_frame.h"
+
+#include <string>
+
 using namespace std;
 
 namespace wss {
@@ -30,12 +34,17 @@ namespace wss {
     // パケットのパース処理
     void WebSocketParser::parse()
     {
-        // パケットバッファを文字列に変換
-        packet_string_.append(buffer_.begin(), buffer_.end());
-        vector<char>().swap(buffer_);
+        WebSocketFrame frame;
+        if (frame.parsePacket(buffer_)) {
+            string payload;
+            payload.append(frame.getPayload().begin(), frame.getPayload().end());
+            cout << "succeeded : " << payload << endl;
+        } else {
+            cout << "failure" << endl;
+        }
+        buffer_.clear();
 
-        cout << "websokcetparser" << endl;
-        cout << packet_string_ << endl;
+        connection_.write("\x81\x05Hello", 7);
     }
 
 } // namespace wss
