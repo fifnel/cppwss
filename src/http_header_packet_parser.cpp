@@ -85,7 +85,7 @@ namespace wss {
         http_response_header += "Upgrade: websocket\r\n";
         http_response_header += "Connection: Upgrade\r\n";
         http_response_header += "Sec-WebSocket-Accept: "+encoded_text+"\r\n";
-        http_response_header += "\r\n\r\n";
+        http_response_header += "\r\n";
 
         connection_.write(http_response_header.c_str(), http_response_header.length());
 
